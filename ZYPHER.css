@@ -1,0 +1,64 @@
+/* styles.css */
+body {
+    background-color: #333; /* Dark background */
+    font-family: Arial, sans-serif;
+}
+
+.hero {
+    background-image: url('hellish-background.jpg'); /* Replace with your own image */
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.tool-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns as needed */
+    gap: 20px;
+}
+
+.tool-slide {
+    background-color: #444; /* Dark gray background */
+    padding: 20px;
+    border: 1px solid #666; /* Dark gray border */
+    border-radius: 10px;
+    width: 250px; /* Adjust the width as needed */
+    height: 250px; /* Adjust the height as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tool-slide:hover {
+    background-color: #555; /* Darker gray background on hover */
+    cursor: pointer;
+}
+.tool-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* adjust the height as needed */
+  }
+  .tool-slide {
+    margin: 50px; /* adjust the value as needed */
+  }
+  .tool-slide {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .tool-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 50px; /* adjust the value as needed */
+  }
