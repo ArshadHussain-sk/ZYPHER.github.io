@@ -73,3 +73,36 @@ body {
     margin: 0 15px;
     text-decoration: none;
 }
+.testimonial-container {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.testimonial {
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  animation: fade 10s infinite;
+}
+
+h4 {
+  color: #333;
+  margin-top: 10px;
+}
+
+@keyframes fade {
+  0%, 33% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  50%, 100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
