@@ -7,12 +7,25 @@ toolSlides.forEach((slide) => {
         // Add your own functionality here, e.g., open a modal or navigate to a new page
     });
 });
+let currentIndex = 0;
 const testimonials = document.querySelectorAll('.testimonial');
-let index = 0;
 
-setInterval(() => {
-  testimonials[index].style.display = 'none';
-  index = (index + 1) % testimonials.length;
-  testimonials[index].style.display = 'block';
-}, 3000);
+function showTestimonial(index) {
+  testimonials.forEach((testimonial, i) => {
+    testimonial.classList.toggle('active', i === index);
+  });
+}
+
+function nextTestimonial() {
+  currentIndex = (currentIndex + 1) % testimonials.length;
+  showTestimonial(currentIndex);
+}
+
+function prevTestimonial() {
+  currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+  showTestimonial(currentIndex);
+}
+
+// Initialize first testimonial
+showTestimonial(currentIndex);
 
