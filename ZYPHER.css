@@ -131,3 +131,29 @@ body {
   opacity: 1;
   background: #555;
 }
+.footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+.footer .social-icons a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+}
+.footer .social-icons a:hover {
+  text-decoration: underline;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.hero, .testimonial-container, .footer {
+  animation: fadeIn 2s ease-in-out;
+}
+

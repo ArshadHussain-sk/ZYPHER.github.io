@@ -28,4 +28,9 @@ function prevTestimonial() {
 
 // Initialize first testimonial
 showTestimonial(currentIndex);
+function scrollToSection(sectionId) {
+  document.querySelector(sectionId).scrollIntoView({
+    behavior: 'smooth',
+  });
+}
 
