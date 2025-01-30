@@ -3,96 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BUDGET TRACKER</title>
-  <link rel="stylesheet" href="DD.css">
-  <link rel="icon" href="logo.jpg" type="logo/x-icon">
-  <style>
-    /* Add some basic styling to the loading screen */
-    #loading-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background-color: #f0f0f0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 48px;
-      font-weight: bold;
-      color: #333;
-    }
-  </style>
+  <title>Budget Tracker</title>
 </head>
-<body style="background-image:url(bg.webp);">
-    <div id="loading-screen">
-        <span style="color: cyan;background-color: chocolate;">ZYPHER</span>&nbsp;
-        <div class="loader"></div>
-      </div>
-    
-      <script>
-      
-        setTimeout(function() {
-          document.getElementById("loading-screen").style.display = "none";
-        }, 2000);
-      </script>
-      <!--MAIN VISUAL-->
-    <header>
-        <h1>Budget Tracker</h1>
-        <blockquote style="color:violet;">~ A budget tells us what we can't afford, but it doesn't keep us from buying it.</blockquote>
-    </header>
-    
-    <section class="budget-form">
-        <h2>Add Expense</h2>
-        <form id="expenseForm">
-            <label for="date">Date:</label>
-            <input type="date" id="date" required>
-            
-            <label for="category">Category:</label>
-            <select id="category">
-                <option value="food">Food</option>
-                <option value="transport">Transport</option>
-                <option value="entertainment">Entertainment</option>
-                <option value="utilities">Utilities</option>
-                <option value="miscellaneous">Others</option>
-            </select>
+<body>
+  <h1>Budget Tracker</h1>
+  <form id="budget-form">
+    <input type="text" id="description" placeholder="Description" required>
+    <input type="number" id="amount" placeholder="Amount" required>
+    <button type="submit">Add Item</button>
+  </form>
+  <ul id="budget-list"></ul>
 
-            <div id="others-input" style="display: none;">
-                <label for="others-reason">Reason:</label>
-                <input type="text" id="others-reason" placeholder="Enter reason">
-            </div><br>
-            
-            
-            <label for="amount">Amount (₹):</label>
-            <input type="number" id="amount" placeholder="Enter amount" required>
-
-            <button type="submit">Add Expense</button>
-        </form>
-    </section>
-
-    <section class="expense-list">
-        <h2>Expenses</h2>
-        <div id="expenseTable">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Category</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody id="expensesBody">
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <section class="budget-summary">
-        <h2>Monthly Summary</h2>
-        <div id="summary"></div>
-    </section>
-
-    <script src="DD.js"></script>
   <script>
     // Load data when the page loads
     document.addEventListener('DOMContentLoaded', () => {
@@ -141,8 +62,4 @@
     });
   </script>
 </body>
-</html>
-<p style="text-align: center;">&copy;2024 ZYPHER</p>
-</body>
-
 </html>
