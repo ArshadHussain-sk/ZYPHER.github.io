@@ -158,3 +158,76 @@ function clearBudgetData() {
 }
 
 
+    // Load expenses from localStorage when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      const expenses = loadExpenses();
+      expenses.forEach(expense => {
+        addExpenseToTable(expense);
+      });
+      updateSummary();
+    });
+
+    // Function to load expenses from localStorage
+    function loadExpenses() {
+      const data = localStorage.getItem('expenses');
+      return data ? JSON.parse(data) : [];
+    }
+
+    // Function to save expenses to localStorage
+    function saveExpenses(expenses) {
+      localStorage.setItem('expenses', JSON.stringify(expenses));
+    }
+
+    // Function to add an expense to the table
+    function addExpenseToTable(expense) {
+      const tbody = document.getElementById('expensesBody');
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${expense.date}</td>
+        <td>${expense.category}</td>
+        <td>₹${expense.amount}</td>
+      `;
+      tbody.appendChild(row);
+    }
+
+    // Function to update the monthly summary
+    function updateSummary() {
+      const expenses = loadExpenses();
+      const total = expenses.reduce((sum, expense) => sum + parseFloat(expense.amount), 0);
+      document.getElementById('summary').textContent = `Total Expenses: ₹${total.toFixed(2)}`;
+    }
+
+    // Handle form submission
+    document.getElementById('expenseForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const date = document.getElementById('date').value;
+      const category = document.getElementById('category').value;
+      const amount = document.getElementById('amount').value;
+
+      const expense = { date, category, amount };
+
+      // Add expense to localStorage
+      const expenses = loadExpenses();
+      expenses.push(expense);
+      saveExpenses(expenses);
+
+      // Add expense to the table
+      addExpenseToTable(expense);
+
+      // Update the summary
+      updateSummary();
+
+      // Clear the form
+      e.target.reset();
+    });
+
+    // Show/hide "Others" reason input
+    document.getElementById('category').addEventListener('change', (e) => {
+      const othersInput = document.getElementById('others-input');
+      if (e.target.value === 'miscellaneous') {
+        othersInput.style.display = 'block';
+      } else {
+        othersInput.style.display = 'none';
+      }
+    });
