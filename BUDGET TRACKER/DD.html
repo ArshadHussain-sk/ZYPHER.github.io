@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Budget Tracker</title>
+  <title>BUDGET TRACKER</title>
   <link rel="stylesheet" href="DD.css">
   <link rel="icon" href="logo.jpg" type="logo/x-icon">
   <style>
@@ -23,65 +23,80 @@
       color: #333;
     }
   </style>
-
 </head>
-<body>
-  <h1>Budget Tracker</h1>
-  <form id="budget-form">
-    <input type="text" id="description" placeholder="Description" required>
-    <input type="number" id="amount" placeholder="Amount" required>
-    <button type="submit">Add Item</button>
-  </form>
-  <ul id="budget-list"></ul>
+<body style="background-image:url(bg.webp);">
+    <div id="loading-screen">
+        <span style="color: cyan;background-color: chocolate;">ZYPHER</span>&nbsp;
+        <div class="loader"></div>
+      </div>
+    
+      <script>
+      
+        setTimeout(function() {
+          document.getElementById("loading-screen").style.display = "none";
+        }, 2000);
+      </script>
+      <!--MAIN VISUAL-->
+    <header>
+        <h1>Budget Tracker</h1>
+        <blockquote style="color:violet;">~ A budget tells us what we can't afford, but it doesn't keep us from buying it.</blockquote>
+    </header>
+    
+    <section class="budget-form">
+        <h2>Add Expense</h2>
+        <form id="expenseForm">
+            <label for="date">Date:</label>
+            <input type="date" id="date" required>
+            
+            <label for="category">Category:</label>
+            <select id="category">
+                <option value="food">Food</option>
+                <option value="transport">Transport</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="utilities">Utilities</option>
+                <option value="miscellaneous">Others</option>
+            </select>
 
-  <script>
-    // Load data when the page loads
-    document.addEventListener('DOMContentLoaded', () => {
-      const budgetData = loadBudgetData();
-      budgetData.forEach(item => {
-        addBudgetItemToUI(item);
-      });
-    });
+            <div id="others-input" style="display: none;">
+                <label for="others-reason">Reason:</label>
+                <input type="text" id="others-reason" placeholder="Enter reason">
+            </div><br>
+            
+            
+            <label for="amount">Amount (₹):</label>
+            <input type="number" id="amount" placeholder="Enter amount" required>
 
-    // Function to load budget data from localStorage
-    function loadBudgetData() {
-      const data = localStorage.getItem('budgetData');
-      return data ? JSON.parse(data) : [];
-    }
+            <button type="submit">Add Expense</button>
+        </form>
+    </section>
 
-    // Function to save budget data to localStorage
-    function saveBudgetData(data) {
-      localStorage.setItem('budgetData', JSON.stringify(data));
-    }
+    <section class="expense-list">
+        <h2>Expenses</h2>
+        <div id="expenseTable">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="expensesBody">
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-    // Function to add a new budget item
-    function addBudgetItem(description, amount) {
-      const newItem = { description, amount: parseFloat(amount) };
-      const budgetData = loadBudgetData();
-      budgetData.push(newItem);
-      saveBudgetData(budgetData);
-      addBudgetItemToUI(newItem);
-    }
+    <section class="budget-summary">
+        <h2>Monthly Summary</h2>
+        <div id="summary"></div>
+    </section>
 
-    // Function to add a budget item to the UI
-    function addBudgetItemToUI(item) {
-      const budgetList = document.getElementById('budget-list');
-      const li = document.createElement('li');
-      li.textContent = `${item.description}: $${item.amount.toFixed(2)}`;
-      budgetList.appendChild(li);
-    }
-
-    // Handle form submission
-    document.getElementById('budget-form').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const description = document.getElementById('description').value;
-      const amount = document.getElementById('amount').value;
-      addBudgetItem(description, amount);
-      // Clear the form
-      e.target.reset();
-    });
-  </script>
-  <script src="DD.js"></script>
+    <script src="DD.js"></script>
 
 </body>
+</html>
+<p style="text-align: center;">&copy;2024 ZYPHER</p>
+</body>
+
 </html>
