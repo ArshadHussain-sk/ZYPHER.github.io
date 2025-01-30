@@ -109,6 +109,52 @@ document.getElementById('expenseForm').addEventListener('submit', (e) => {
     const expenseData = { date, category, amount };
     localStorage.setItem('expenses', JSON.stringify(expenseData));
   });
-  
+  // Function to save budget data to localStorage
+function saveBudgetData(data) {
+  localStorage.setItem('budgetData', JSON.stringify(data));
+}
+// Function to load budget data from localStorage
+function loadBudgetData() {
+  const data = localStorage.getItem('budgetData');
+  return data ? JSON.parse(data) : [];
+}
+// Load data when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+  const budgetData = loadBudgetData();
+  // Populate the budget tracker with the loaded data
+  budgetData.forEach(item => {
+    addBudgetItemToUI(item);
+  });
+});
+
+// Function to add a new budget item
+function addBudgetItem(description, amount) {
+  const newItem = { description, amount };
+  const budgetData = loadBudgetData();
+  budgetData.push(newItem);
+  saveBudgetData(budgetData);
+  addBudgetItemToUI(newItem);
+}
+
+// Function to add a budget item to the UI
+function addBudgetItemToUI(item) {
+  const budgetList = document.getElementById('budget-list');
+  const li = document.createElement('li');
+  li.textContent = `${item.description}: $${item.amount}`;
+  budgetList.appendChild(li);
+}
+
+// Example: Add a new item when a form is submitted
+document.getElementById('budget-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const description = document.getElementById('description').value;
+  const amount = document.getElementById('amount').value;
+  addBudgetItem(description, amount);
+});
+function clearBudgetData() {
+  localStorage.removeItem('budgetData');
+  // Clear the UI
+  document.getElementById('budget-list').innerHTML = '';
+}
 
 
